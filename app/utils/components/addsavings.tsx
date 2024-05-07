@@ -1,3 +1,5 @@
+"use client"
+import firebase from "firebase/compat/app";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -7,6 +9,10 @@ export default function AddSavings() {
     const [amount, setAmount] = useState(0);
     const [contrib, setContrib] = useState(0);
 
+    function submitGoal() {
+        firebase.firestore().collection("SavingsGoals")
+        console.warn("not implemented")
+    }
 
     return (
         // savings input
@@ -19,6 +25,7 @@ export default function AddSavings() {
                     <input 
                         type="text"
                         placeholder="Emercency Fund"
+                        onChange={e => setName(e.target.value)}
                         className="w-full pl-8 pr-16 py-2 appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                     />
                 </div>
@@ -35,6 +42,7 @@ export default function AddSavings() {
                     <input
                         type="number"
                         placeholder="0.00"
+                        onChange={e => setAmount(e.target.valueAsNumber)}
                         className="w-full pl-8 pr-16 py-2 appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                     />
                     <div className="absolute inset-y-0 right-3 flex items-center">
@@ -58,6 +66,7 @@ export default function AddSavings() {
                     <input
                         type="number"
                         placeholder="0.00"
+                        onChange={e => setContrib(e.target.valueAsNumber)}
                         className="w-full pl-8 pr-16 py-2 appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                     />
                     <div className="absolute inset-y-0 right-3 flex items-center">
@@ -71,6 +80,7 @@ export default function AddSavings() {
             </div>
             {/* submit button */}
             <button
+            onClick={e => submitGoal()}
                 className="px-3 py-3 text-cyan-600 bg-cyan-50 rounded-lg duration-150 hover:bg-cyan-100 active:bg-cyan-200">
                 <Link href={"/dashboard"}>Submit</Link>
             </button>

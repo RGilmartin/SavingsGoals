@@ -7,10 +7,6 @@ import { getFirestore } from "firebase/firestore";
 
 export default function Dashboard() {
 
-    const [goals, goalsLoading, goalsError] = useCollection(
-        getFirestore(firebaseApp), {}
-    );
-
 
     const tableItems:SavingGoal[] = [
         {
